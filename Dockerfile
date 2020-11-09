@@ -1,22 +1,33 @@
-FROM centos:latest
+FROM ubuntu:latest
 
-RUN yum install -y ncurses-devel.x86_64 git make
+RUN apt-get update && apt-get install -y curl git make gcc libncurses5-dev
 
 WORKDIR /root
-RUN git clone https://github.com/vim/vim.git
-RUN yum install -y gcc
-RUN	cd vim/src && \
+RUN git clone https://github.com/vim/vim.git && \
+    cd vim/src && \
 		make && \
 		make install && \
-		cd /root && \
 		rm -rf /root/vim
 
-FROM centos:latest
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y curl
 RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 RUN curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
 		chmod +x /usr/local/bin/docker-compose
 
-FROM centos:latest
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y \
+  autoconf \ 
+  automake \
+  build-essential \ 
+  git \
+  libffi-dev \
+  libssl-dev \
+	rsync \
+	tmux \
+  wget \
+  zlib1g-dev \ 
+	zsh
 
 COPY --from=0 /usr/local/bin/vim /usr/local/bin/vim
 COPY --from=0 /usr/local/share/vim /usr/local/share/vim
@@ -27,5 +38,14 @@ RUN git clone https://github.com/mcmillanator/dotfiles.git && \
 	cd dotfiles && \
 	./install.sh ; \
 	exit 0
-RUN yum install -y git jq ncurses openssh-clients rsync tmux zsh
-#RUN yum groupinstall -y 'Development Tools' --skip-broken
+
+RUN echo "America/New_York" > /etc/timezone
+WORKDIR /tmp
+RUN wget https://az764295.vo.msecnd.net/stable/fcac248b077b55bae4ba5bab613fd6e9156c2f0c/code_1.51.0-1604600753_amd64.deb
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
+RUN echo "tzdata tzdata/Areas select US\n tzdata tzdata/Zones/US select Eastern" > /tmp/preseed.txt
+RUN debconf-set-selections /tmp/preseed.txt
+RUN apt install -y ./code_1.51.0-1604600753_amd64.deb
+RUN apt install -y libx11-xcb1 libxcb-dri3-0 libasound2
+RUN apt install -y vim-gtk

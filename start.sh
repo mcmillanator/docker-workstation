@@ -1,1 +1,1 @@
-docker run  --rm --hostname workstation -v ~/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock -v `pwd`:/root -it workstation /bin/bash
+docker run  --rm --net=host --env=DISPLAY -v "$HOME/.Xauthority:/root/.Xauthority:rw" --hostname workstation -v ~/.ssh:/root/.ssh -v /var/run/docker.sock:/var/run/docker.sock -v `pwd`:/mnt -it workstation /bin/bash

@@ -15,6 +15,7 @@ RUN apk add --no-cache \
   tmux \
   vim \
   wget \ 
+  zsh-vcs \
   zsh
 RUN gem install tmuxinator
 #RUN git clone https://github.com/mcmillanator/dotfiles.git && \

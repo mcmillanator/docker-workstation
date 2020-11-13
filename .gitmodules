@@ -1,6 +1,6 @@
-[submodule "files/home/.vim/pack/bundle/opt/minpac"]
-	path = files/home/.vim/minpac
+[submodule "minpac"]
+	path = files/home/.vim/pack/bundle/opt/minpac
 	url = https://github.com/k-takata/minpac.git
-[submodule "files/home/.tmux"]
+[submodule "tmux"]
 	path = files/home/.tmux
 	url = https://github.com/gpakosz/.tmux.git

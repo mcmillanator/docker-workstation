@@ -4,6 +4,7 @@ docker run  --rm \
   -e DISPLAY \
   -e XAUTHORITY \
   -v ssh:/home/.ssh \
+  -v minpac:/home/.vim/pack/minpac \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v /etc/passwd:/etc/passwd:ro \
   -v /etc/group:/etc/group:ro \

@@ -25,4 +25,5 @@ RUN gem install tmuxinator
 ENV HOME /home
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 COPY files/home /home
+RUN ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
 VOLUME /home/.ssh

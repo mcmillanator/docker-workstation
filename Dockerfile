@@ -8,12 +8,14 @@ RUN apk add --no-cache \
   docker-compose \
   git \
   make \
+  openssh-client \
+  perl \
   rsync \
   ruby \
   sudo \
   tmux \
   vim \
-  wget \
+  wget \ 
   zsh
 #RUN git clone https://github.com/mcmillanator/dotfiles.git && \
 #	cd dotfiles && \

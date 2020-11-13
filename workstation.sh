@@ -3,6 +3,7 @@ docker run  --rm \
   --net=host \
   -e DISPLAY \
   -e XAUTHORITY \
+  -v ssh:/home/.ssh \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v /etc/passwd:/etc/passwd:ro \
   -v /etc/group:/etc/group:ro \

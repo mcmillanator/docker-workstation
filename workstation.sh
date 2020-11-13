@@ -1,14 +1,15 @@
+export HOME=/home
 docker run  --rm \
   --net=host \
-  -u $(id -u):997 \
-  -e HOME \
   -e DISPLAY \
   -e XAUTHORITY \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v /etc/passwd:/etc/passwd:ro \
   -v /etc/group:/etc/group:ro \
   -v "$XAUTHORITY:/root/.Xauthority:rw" \
-  -v $HOME:$HOME \
-  -w $HOME \
   --hostname workstation \
-  -it workstation /bin/bash
+  -u $ID:997 \
+  -v $(pwd):/app \
+  -w /app \
+  -e HOME \
+  -it workstation /bin/zsh

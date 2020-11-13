@@ -2,7 +2,7 @@ FROM alpine
 
 COPY ./files/etc/sudoers /etc/sudoers
 
-WORKDIR /root
+WORKDIR /home
 RUN apk add --no-cache \ 
   docker \
   docker-compose \
@@ -21,4 +21,8 @@ RUN apk add --no-cache \
 #	cd dotfiles && \
 #	./install.sh ; \
 #	exit 0
-RUN apk add --no-cache openssh-client perl
+VOLUME /home
+RUN sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+COPY files/etc /
+COPY files/home /home
+RUN chmod 777 -R /home

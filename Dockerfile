@@ -2,6 +2,7 @@ FROM alpine
 
 WORKDIR /home
 RUN apk add --no-cache \ 
+  curl \
   docker \
   docker-compose \
   git \
@@ -20,6 +21,6 @@ RUN gem install tmuxinator
 #	cd dotfiles && \
 #	./install.sh ; \
 #	exit 0
-VOLUME /home
+ENV HOME /home
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 COPY files/home /home
-RUN chmod 777 -R /home

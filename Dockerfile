@@ -2,9 +2,11 @@ FROM alpine
 
 WORKDIR /home
 RUN apk add --no-cache \ 
+  bash \
   curl \
   docker \
   docker-compose \
+  fzf \
   git \
   go \
   make \

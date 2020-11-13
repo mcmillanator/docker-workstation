@@ -6,6 +6,7 @@ RUN apk add --no-cache \
   docker \
   docker-compose \
   git \
+  go \
   make \
   openssh-client \
   perl \

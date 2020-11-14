@@ -1,0 +1,8 @@
+{
+    "terminal.integrated.fontFamily": "Hack, monospace",
+    "terminal.integrated.cursorBlinking": false,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorWidth": 2,
+    "terminal.integrated.shellArgs.linux": [],
+    "terminal.integrated.shell.linux": "/bin/zsh"
+}

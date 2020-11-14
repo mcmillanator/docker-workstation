@@ -73,10 +73,16 @@ plugins=(catimg
          git
          git-prompt
          git-extras
+         ssh-agent
          tmux
          tmuxinator
          vi-mode
        )
+    
+# ssh-agent plugin settings
+# IMPORTANT: put these settings before the line that sources oh-my-zsh
+# use multiple identities with ssh-agent by listing them here
+zstyle :omz:plugins:ssh-agent identities id_rsa
 
 source $ZSH/oh-my-zsh.sh
 

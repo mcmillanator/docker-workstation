@@ -30,6 +30,7 @@ RUN apk add --no-cache \
   git \
   go \
   g++ \
+  lsblk \
   make \
   nodejs \
   openssh-client \
@@ -51,4 +52,5 @@ COPY files/home /home
 RUN ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
 COPY --from=builder /home/theia /home/theia
 WORKDIR /home/theia
+ENV THEIA_DEFAULT_PLUGINS local-dir:/home/theia/plugins
 ENTRYPOINT [ "node", "/home/theia/src-gen/backend/main.js", "/app", "--hostname=0.0.0.0" ]

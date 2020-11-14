@@ -1,6 +1,7 @@
 #!/bin/sh
 export HOME=/home
 docker run  --rm \
+  --init \
   -e DISPLAY \
   -e XAUTHORITY \
   -v ssh:/home/.ssh \

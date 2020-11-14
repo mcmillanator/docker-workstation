@@ -4,5 +4,6 @@
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorWidth": 2,
     "terminal.integrated.shellArgs.linux": [],
-    "terminal.integrated.shell.linux": "/bin/zsh"
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "workbench.colorTheme": "Solarized Dark"
 }

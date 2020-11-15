@@ -2,7 +2,16 @@
 # modified here
 ARG NODE_VERSION=12.18.3
 FROM node:${NODE_VERSION}-alpine AS builder
-RUN apk add --no-cache make pkgconfig gcc g++ python libx11-dev libxkbfile-dev
+RUN apk add --no-cache \
+    gcc \
+    g++ \
+    libx11-dev \
+    libxkbfile-dev \
+    libsecret-dev \
+    make \
+    pkgconfig \
+    python \
+    ;
 ARG version=latest
 WORKDIR /home/theia
 ADD files/theia/package.json /home/theia/package.json
@@ -16,7 +25,6 @@ RUN yarn --pure-lockfile && \
     echo *.spec.* >> .yarnclean && \
     yarn autoclean --force && \
     yarn cache clean
-ENTRYPOINT [ "node", "/home/theia/src-gen/backend/main.js", "/home/project", "--hostname=0.0.0.0" ]
 
 FROM alpine
 

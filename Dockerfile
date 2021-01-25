@@ -13,8 +13,8 @@ RUN apk add --no-cache \
     python \
     ;
 ARG version=latest
-WORKDIR /home/theia
-ADD files/theia/package.json /home/theia/package.json
+WORKDIR /app/theia
+ADD files/theia/package.json /app/theia/package.json
 RUN yarn --pure-lockfile && \
     NODE_OPTIONS="--max_old_space_size=4096" yarn theia build && \
     yarn theia download:plugins && \
@@ -28,7 +28,7 @@ RUN yarn --pure-lockfile && \
 
 FROM alpine
 
-WORKDIR /home
+WORKDIR /apps
 RUN apk add --no-cache \ 
   bash \
   curl \
@@ -58,7 +58,8 @@ ENV HOME /home
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 COPY files/home /home
 RUN ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
-COPY --from=builder /home/theia /home/theia
-WORKDIR /home/theia
-ENV THEIA_DEFAULT_PLUGINS local-dir:/home/theia/plugins
-ENTRYPOINT [ "node", "/home/theia/src-gen/backend/main.js", "/app", "--hostname=0.0.0.0" ]
+COPY --from=builder /app/theia /app/theia
+ENV THEIA_DEFAULT_PLUGINS local-dir:/app/theia/plugins
+VOLUME /home/.vim/pack/minpac /apps
+WORKDIR /app/theia
+ENTRYPOINT [ "node", "/app/theia/src-gen/backend/main.js", "/app", "--hostname=0.0.0.0" ]

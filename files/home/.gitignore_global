@@ -10,7 +10,6 @@
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -107,8 +106,10 @@ bower.json
 # Ignore pow environment settings
 .powenv
 
-# Ignore Byebug command history file.
+# Ignore history files.
 .byebug_history
+.pry_history
+.bash_history
 
 # Ignore vim session file
 Session.vim

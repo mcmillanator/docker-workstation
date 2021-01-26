@@ -38,6 +38,7 @@ RUN apk add --no-cache \
   git \
   go \
   g++ \
+  grep \
   lsblk \
   make \
   nodejs \

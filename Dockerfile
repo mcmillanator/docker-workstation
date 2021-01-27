@@ -61,6 +61,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 COPY files/home /home
 RUN ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
 COPY --from=builder /app/theia /app/theia
+COPY files/usr/local/bin/aws /usr/local/bin
 ENV THEIA_DEFAULT_PLUGINS local-dir:/app/theia/plugins
 VOLUME /home/.vim/pack/minpac /apps
 WORKDIR /app/theia

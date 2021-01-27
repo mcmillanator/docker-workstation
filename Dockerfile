@@ -42,6 +42,7 @@ RUN apk add --no-cache \
   lsblk \
   make \
   nodejs \
+  ncurses \
   openssh-client \
   perl \
   rsync \
